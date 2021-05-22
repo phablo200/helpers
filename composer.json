@@ -1,0 +1,19 @@
+{
+    "name": "phablo/helpers",
+    "description": "Helpers para trataticas de entradas de dados na requisição",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Phablo Vilas boas",
+            "email": "phablovilasboas25@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload" : {
+        "psr-4" : {
+            "Phablo\\Helpers\\" :  "src/"
+        }
+    }
+}
