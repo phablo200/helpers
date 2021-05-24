@@ -1,18 +1,21 @@
 <?php
 
 namespace Phablo\Helpers;
+use Carbon\Carbon;
 
 class UtilFormatBR 
 {    
     public static function toFloat($value, $prefix = 'R$ ', $numberDecimal = 2, $sufix = NULL)
     {
-        if ($value !== NULL) {
-            $number = $prefix . number_format($value, $numberDecimal, ',', '.');
-            if ($sufix != NULL) {
-                return $number . $sufix;
+        try {
+            if ($value !== NULL) {
+                $number = $prefix . number_format($value, $numberDecimal, ',', '.');
+                if ($sufix != NULL) {
+                    return $number . $sufix;
+                }
+                return $number;
             }
-            return $number;
-        }
+        } catch (\Exception $e) {}
         
         return $value;
     }
@@ -30,10 +33,12 @@ class UtilFormatBR
 
     public static function toDate($value, $createFromFormat = 'Y-m-d H:i:s.000', $toFormat = 'd/m/Y')
     {
-        if ($value) {
-            return Carbon::createFromFormat($createFromFormat, $value)->format($toFormat);
-        }
-
+        try {
+            if ($value) {
+                return Carbon::createFromFormat($createFromFormat, $value)->format($toFormat);
+            }
+        } catch (\Exception $e) {}
+        
         return $value;
     }
 
