@@ -9,7 +9,9 @@
             "email": "phablovilasboas25@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "nesbot/carbon": "^2.31"
+    },
     "autoload" : {
         "psr-4" : {
             "Phablo\\Helpers\\" :  "src/"

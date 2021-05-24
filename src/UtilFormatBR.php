@@ -2,10 +2,9 @@
 
 namespace Phablo\Helpers;
 
-
-class UtilFormatBR {
-    
-    public static function toFloat($value, $prefix = '', $numberDecimal = 2, $sufix = NULL)
+class UtilFormatBR 
+{    
+    public static function toFloat($value, $prefix = 'R$ ', $numberDecimal = 2, $sufix = NULL)
     {
         if ($value !== NULL) {
             $number = $prefix . number_format($value, $numberDecimal, ',', '.');
@@ -14,9 +13,10 @@ class UtilFormatBR {
             }
             return $number;
         }
-        return NULL;
+        
+        return $value;
     }
-
+    
     public static function isFloat($_value, $_currency = false)
     {
         if ($_currency) {
@@ -28,4 +28,25 @@ class UtilFormatBR {
         return preg_match($regExp, $_value)>0;
     }
 
+    public static function toDate($value, $createFromFormat = 'Y-m-d H:i:s.000', $toFormat = 'd/m/Y')
+    {
+        if ($value) {
+            return Carbon::createFromFormat($createFromFormat, $value)->format($toFormat);
+        }
+
+        return $value;
+    }
+
+    public static function toBoolean($value)
+    {
+        try {
+            if (in_array($value, ['Sim', 'Não'], true)) {
+                return $value;
+            }
+
+            return $value == 1 ? 'Sim' : 'Não';
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
 }
